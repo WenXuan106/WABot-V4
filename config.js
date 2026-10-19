@@ -4,7 +4,7 @@ function envNumber(name, fallback) {
 }
 
 module.exports = {
-  PREFIX: process.env.PREFIX || "!",
+  PREFIX: process.env.PREFIX || "-",
 
   PORT: process.env.PORT || 3000,
 
