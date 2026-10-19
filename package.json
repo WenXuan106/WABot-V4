@@ -21,6 +21,5 @@
     "qrcode": "^1.5.3",
     "dotenv": "^16.4.5",
     "telegraf": "^4.16.3",
-  //Telegraf it for future when I add Telegram support to the bot
   }
 }
