@@ -1,0 +1,47 @@
+const config = require("../config");
+
+function performanceRating(ms) {
+  if (ms < 300) return { dot: "🟢", label: "Excellent" };
+  if (ms < 800) return { dot: "🟢", label: "Fast" };
+  if (ms < 2000) return { dot: "🟡", label: "Moderate" };
+  return { dot: "🔴", label: "Very Slow" };
+}
+
+module.exports = {
+  name: "ping",
+  description: "Check that the bot is alive and see response time",
+  async execute(ctx) {
+ 
+    const sentAt = ctx.messageTimestampMs ?? Date.now();
+    const ms = Math.max(0, Date.now() - sentAt);
+    const perf = performanceRating(ms);
+    const divider = "―――――――――――――――";
+
+      "",
+      `🏓 *${config.BOT_NAME}*`,
+      divider,
+      "",
+      `🔥 *${config.BOT_NAME} is online.*`,
+      "",
+      `⚡ *Response Time:*`,
+      `${ms}ms`,
+      "",
+      `📊 *Performance:*`,
+      `${perf.dot} ${perf.label}`,
+      "",
+      divider,
+      "",
+      `📢 *Stay updated:*`,
+      `https://whatsapp.com/channel/0029VbBbyJO2v1IxySsZL72i`,
+      "",
+      divider,
+      "",
+      `🚀 Systems operational.`,
+      divider,
+      "",
+     `Use !help to see all commands.`, 
+    ];
+
+    await ctx.sendText(lines.join("\n"));
+  },
+};
