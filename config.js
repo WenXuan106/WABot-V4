@@ -10,7 +10,7 @@ module.exports = {
 
   AUTH_FOLDER: process.env.AUTH_FOLDER || "auth_info_baileys",
 
-  BOT_NAME: process.env.BOT_NAME || "Wen_Xuan106’s Whatsapp 
+  BOT_NAME: process.env.BOT_NAME || "Wen_Xuan106’s Whatsapp Bot"
     
   OWNER_NAME: process.env.OWNER_NAME || "",
 
