@@ -12,8 +12,6 @@ module.exports = {
 
   BOT_NAME: process.env.BOT_NAME || "Wen_Xuan106’s Whatsapp Bot"
     
-  OWNER_NAME: process.env.OWNER_NAME || "",
-
   OWNER_NUMBER: process.env.OWNER_NUMBER || "",
 
 DASHBOARD_PASSWORD: process.env.DASHBOARD_PASSWORD || "",
