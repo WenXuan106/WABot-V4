@@ -14,7 +14,6 @@ const refreshBtn = document.getElementById("refresh");
 const lockBtn = document.getElementById("lock");
 const footerStatus = document.getElementById("footer-status");
 
-// Kept only for this browser tab — closing the tab forgets it.
 let password = sessionStorage.getItem("dashboardPassword") || "";
 let groups = [];
 
