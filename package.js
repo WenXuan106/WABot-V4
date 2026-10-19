@@ -1,0 +1,26 @@
+{
+  "name": "Wen_Xuan106's-WhatsApp-Bot",
+  "version": "4",
+  "description": "Personal WhatsApp bot with a pairing-code website, built on Baileys.",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node --max-old-space-size=460 --optimize-for-size --gc-interval=100 index.js"
+  },
+  "engines": {
+    "node": ">=20.0.0 <23.0.0"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "6.7.22",
+    "axios": "^1.7.7",
+    "express": "^4.19.2",
+    "google-tts-api": "^2.0.2",
+    "node-webpmux": "^3.1.7",
+    "pino": "^9.3.2",
+    "qrcode": "^1.5.3",
+    "dotenv": "^16.4.5",
+    "telegraf": "^4.16.3",
+  //Telegraf it for future when I add Telegram support to the bot
+  }
+}
