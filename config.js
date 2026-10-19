@@ -11,7 +11,5 @@ module.exports = {
   AUTH_FOLDER: process.env.AUTH_FOLDER || "auth_info_baileys",
 
   BOT_NAME: process.env.BOT_NAME || "Wen_Xuan106’s Whatsapp Bot"
-    
-  OWNER_NUMBER: process.env.OWNER_NUMBER || "",
-
-DASHBOARD_PASSWORD: process.env.DASHBOARD_PASSWORD || "",
+  
+  DASHBOARD_PASSWORD: process.env.DASHBOARD_PASSWORD || "",
