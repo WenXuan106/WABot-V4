@@ -16,7 +16,7 @@ module.exports = {
     const ms = Math.max(0, Date.now() - sentAt);
     const perf = performanceRating(ms);
     const divider = "―――――――――――――――";
-
+    const lines = [
       "",
       `🏓 *${config.BOT_NAME}*`,
       divider,
