@@ -1,7 +1,7 @@
 {
-  "name": "Wen_Xuan106's-WhatsApp-Bot",
-  "version": "4",
-  "description": "Personal WhatsApp bot with a pairing-code website, built on Baileys.",
+  "name": "wen-xuan106-whatsapp-bot",
+  "version": "4.0.0",
+  "description": "WhatsApp pairing website and connection service built on Baileys.",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
@@ -20,6 +20,7 @@
     "pino": "^9.3.2",
     "qrcode": "^1.5.3",
     "dotenv": "^16.4.5",
-    "telegraf": "^4.16.3"
+    "telegraf": "^4.16.3",
+    "@resvg/resvg-js": "^2.6.2"
   }
 }
