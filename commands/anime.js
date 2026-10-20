@@ -220,8 +220,7 @@ async function handleCharacterSearch(ctx, query) {
 module.exports = {
   name: "anime",
   description:
-    `Search an anime by name, search a character with '!anime character <name>', ` +
-    `or react with '!anime <type>' — types: ${REACTION_TYPES.join(", ")}.`,
+    `Search an anime by name, search a character with '!anime character <name>', ` +,
   async execute(ctx) {
     if (!ctx.args.length) {
       return ctx.sendText(
@@ -229,7 +228,6 @@ module.exports = {
           "Usage:",
           "!anime <name> — search an anime",
           "!anime character <name> — search a character",
-          `!anime <type> — reaction gif/sticker: ${REACTION_TYPES.join(", ")}`,
         ].join("\n")
       );
     }
