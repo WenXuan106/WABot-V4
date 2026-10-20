@@ -5,21 +5,22 @@ const SECTIONS = [
   { title: "ADMIN", icon: "🛡️", commands: ["WORK IN PROGRESS"] },
   { title: "GAMES", icon: "🎮", commands: ["WORK IN PROGESS"] },
   { title: "FUN", icon: "🎭", commands: ["8ball", "ash"] },
-  { title: "MEDIA", icon: "🎞️", commands: ["translate"] },
+  { title: "MEDIA", icon: "🎞️", commands: ["translate", "song"] },
   { title: "AI", icon: "🤖", commands: ["WORK IN PROGRESS"] },
   { title: "UTILITY", icon: "🌍", commands: ["desmos"] },
   { title: "OWNER", icon: "👑", commands: ["WORK IN PROGRESS"] },
 ];
 
 const INFO = {
-  help: ["[section]", "Browse the command directory"],
-  ping: ["", "Check bot status and response speed"],
-  milo: ["", "Get a Milo response"],
-  pfp: ["[@user]", "View a user's profile picture"],
-  "8ball": ["<question>", "Ask the magic 8-ball"],
-  ash: ["", "Get a random Ash response"],
-  translate: ["<language> <text>", "Translate text into another language"],
-  desmos: ["<function>", "Plot functions and equations as a graph image"],
+  help: ["[section]", "See cmds"],
+  ping: ["", "See bot online or not"],
+  milo: ["", "MILOOOOO!!!"],
+  pfp: ["[@user]", "Download ppl pfp yeah"],
+  "8ball": ["<question>", "Ask 8-ball random thing"],
+  ash: ["", "Get random ahh respond from this cmd"],
+  translate: ["<language> <text>", "Translation to other Language"],
+  desmos: ["<function>", "Same sh- as Desmos"],
+  song: ["","finds some random ahh song ur wanna search"],
 };
 
 function commandInfo(command) {
@@ -58,7 +59,7 @@ function menuMessage(ctx, sections, totalCommands) {
     `╰${line}╯`,
     "",
     `Hey @${ctx.shortId(ctx.senderId)}! 👋`,
-    "Here’s what I can do for you.",
+    "Here is wat I can do.",
     "",
     `╭─ *BOT INFO*`,
     `│ ⚡ Prefix   : ${p}`,
