@@ -27,6 +27,7 @@ const path = require("path");
 const config = require("./config");
 const { startSocket, getState, onUpdate, resumeSavedSession } = require("./lib/whatsapp");
 const { createDashboardRouter } = require("./lib/dashboard");
+const { startTelegramBot } = require("./lib/telegram");
 
 const app = express();
 app.use(express.json());
@@ -86,3 +87,5 @@ app.get("/api/stream", (req, res) => {
 app.listen(config.PORT, () => {
   console.log(`Pairing website running at http://localhost:${config.PORT}`);
 });
+
+startTelegramBot();
