@@ -1,11 +1,6 @@
 const { Resvg } = require("@resvg/resvg-js");
 const config = require("../config");
-const { parseGraphRequest, buildGraphSvg, summarise, parseColourPrefix, buildColourChartSvg } = require("../lib/graphcard");
-
-/**
- * Draws the SVG to a PNG. If the full-size picture can't be made (for example not enough memory on a small
- * phone) it tries again at half size, so people still get a graph.
- */
+const { parseGraphRequest, buildGraphSvg, summarise, parseColourPrefix, buildColourChartSvg } = require("../lib/
 function renderPng(svg) {
   const options = { font: { loadSystemFonts: true } };
   try {
@@ -42,10 +37,6 @@ const USAGE = [
   "Math: + - * / ^, brackets, pi, e, sin cos tan asin acos atan sinh cosh tanh sqrt cbrt abs ln log exp floor ceil round sign.",
 ].join("\n");
 
-/**
- * The text after "!desmos". Uses the original message text (so new lines are
- * kept — one line per equation) and falls back to the split-up arguments.
- */
 function requestText(ctx) {
   const raw = String(ctx.text || "");
   if (raw.startsWith(config.PREFIX)) {
@@ -61,7 +52,7 @@ module.exports = {
   aliases: ["graph", "plot"],
   description: "Graph functions, lines and curves as an image, e.g. !desmos x^2; sin(x)",
   async execute(ctx) {
-    // A .txt file sent with !desmos (or replied to with !desmos) is read too — it can be far longer than a chat message.
+    
     let fileText = null;
     try {
       fileText = ctx.getDocumentText ? await ctx.getDocumentText() : null;
@@ -74,16 +65,13 @@ module.exports = {
 
     const typedRaw = requestText(ctx);
 
-    // "!desmos colours" shows the colour chart.
     if (!fileText && /^(colou?rs?|palette)$/i.test(typedRaw)) {
       const chart = renderPng(buildColourChartSvg());
       return ctx.sendImage(chart, "🎨 Put a colour first, e.g. !desmos dark blue  (or a code like #ff8800)");
     }
 
-    // A colour (with an optional shade) at the start: "blue", "dark blue", "#ff8800".
     const { colour, rest: typed } = parseColourPrefix(typedRaw);
 
-    // Replying to a message with !desmos graphs that message.
     const input = fileText ? `${typed}\n${fileText}`.trim() : typed || String(ctx.quotedText || "").trim();
     if (!input) {
       return ctx.sendText(USAGE);
