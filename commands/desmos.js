@@ -1,6 +1,8 @@
 const { Resvg } = require("@resvg/resvg-js");
 const config = require("../config");
-const { parseGraphRequest, buildGraphSvg, summarise, parseColourPrefix, buildColourChartSvg } = require("../lib/
+const { parseGraphRequest, buildGraphSvg, summarise, parseColourPrefix, buildColourChartSvg } = require("../lib/graphcard");
+
+
 function renderPng(svg) {
   const options = { font: { loadSystemFonts: true } };
   try {
@@ -37,6 +39,7 @@ const USAGE = [
   "Math: + - * / ^, brackets, pi, e, sin cos tan asin acos atan sinh cosh tanh sqrt cbrt abs ln log exp floor ceil round sign.",
 ].join("\n");
 
+
 function requestText(ctx) {
   const raw = String(ctx.text || "");
   if (raw.startsWith(config.PREFIX)) {
@@ -65,13 +68,16 @@ module.exports = {
 
     const typedRaw = requestText(ctx);
 
+    
     if (!fileText && /^(colou?rs?|palette)$/i.test(typedRaw)) {
       const chart = renderPng(buildColourChartSvg());
       return ctx.sendImage(chart, "🎨 Put a colour first, e.g. !desmos dark blue  (or a code like #ff8800)");
     }
 
+    
     const { colour, rest: typed } = parseColourPrefix(typedRaw);
 
+    
     const input = fileText ? `${typed}\n${fileText}`.trim() : typed || String(ctx.quotedText || "").trim();
     if (!input) {
       return ctx.sendText(USAGE);
