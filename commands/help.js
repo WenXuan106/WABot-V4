@@ -21,6 +21,7 @@ const INFO = {
   translate: ["<language> <text>", "Translation to other Language"],
   desmos: ["<function>", "Same sh- as Desmos"],
   song: ["","finds some random ahh song ur wanna search"],
+  ship: ["", "I recommend shipping Haynan x Alisa 👍"],
 };
 
 function commandInfo(command) {
