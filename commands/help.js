@@ -5,7 +5,7 @@ const SECTIONS = [
   { title: "ADMIN", icon: "🛡️", commands: ["WORK IN PROGRESS"] },
   { title: "GAMES", icon: "🎮", commands: ["WORK IN PROGESS"] },
   { title: "FUN", icon: "🎭", commands: ["8ball", "ash", "ship"] },
-  { title: "MEDIA", icon: "🎞️", commands: ["translate", "song"] },
+  { title: "MEDIA", icon: "🎞️", commands: ["translate", "song", "anime"] },
   { title: "AI", icon: "🤖", commands: ["WORK IN PROGRESS"] },
   { title: "UTILITY", icon: "🌍", commands: ["desmos"] },
   { title: "OWNER", icon: "👑", commands: ["WORK IN PROGRESS"] },
@@ -22,6 +22,7 @@ const INFO = {
   desmos: ["<function>", "Same sh- as Desmos"],
   song: ["","finds some random ahh song ur wanna search"],
   ship: ["", "I recommend shipping Haynan x Alisa 👍"],
+  anime: ["", "search some random anime stuff, i recommend if you femboy"]
 };
 
 function commandInfo(command) {
