@@ -4,7 +4,7 @@ const SECTIONS = [
   { title: "GENERAL", icon: "🧭", commands: ["help", "ping", "milo", "pfp"] },
   { title: "ADMIN", icon: "🛡️", commands: ["WORK IN PROGRESS"] },
   { title: "GAMES", icon: "🎮", commands: ["WORK IN PROGESS"] },
-  { title: "FUN", icon: "🎭", commands: ["8ball", "ash"] },
+  { title: "FUN", icon: "🎭", commands: ["8ball", "ash", "ship"] },
   { title: "MEDIA", icon: "🎞️", commands: ["translate", "song"] },
   { title: "AI", icon: "🤖", commands: ["WORK IN PROGRESS"] },
   { title: "UTILITY", icon: "🌍", commands: ["desmos"] },
