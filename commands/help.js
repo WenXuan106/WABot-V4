@@ -7,7 +7,7 @@ const SECTIONS = [
   { title: "FUN", icon: "🎭", commands: ["8ball", "ash"] },
   { title: "MEDIA", icon: "🎞️", commands: ["translate"] },
   { title: "AI", icon: "🤖", commands: ["WORK IN PROGRESS"] },
-  { title: "UTILITY", icon: "🌍", commands: ["WORK IN PROGRESS"] },
+  { title: "UTILITY", icon: "🌍", commands: ["desmos"] },
   { title: "OWNER", icon: "👑", commands: ["WORK IN PROGRESS"] },
 ];
 
@@ -19,6 +19,7 @@ const INFO = {
   "8ball": ["<question>", "Ask the magic 8-ball"],
   ash: ["", "Get a random Ash response"],
   translate: ["<language> <text>", "Translate text into another language"],
+  desmos: ["<function>", "Plot functions and equations as a graph image"],
 };
 
 function commandInfo(command) {
