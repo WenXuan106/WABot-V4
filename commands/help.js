@@ -22,7 +22,7 @@ const INFO = {
   desmos: ["<function>", "Same sh- as Desmos"],
   song: ["","finds some random ahh song ur wanna search"],
   ship: ["", "I recommend shipping Haynan x Alisa 👍"],
-  anime: ["", "search some random anime stuff, i recommend if you femboy"]
+  anime: ["", "search some random anime stuff, i recommend if you femboy"],
   admin: ["[kick, promote, demote, lock, unlock]", "Asian tools"],
   slipper: ["[on, off, status]", "Asian bot on/off switch"],
   asianparent: ["[on, off, add, remove, list]", "Group language filter"],
