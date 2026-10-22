@@ -2,7 +2,7 @@ const config = require("../config");
 
 const SECTIONS = [
   { title: "GENERAL", icon: "🧭", commands: ["help", "ping", "milo", "pfp"] },
-  { title: "ADMIN", icon: "🛡️", commands: ["WORK IN PROGRESS"] },
+  { title: "ADMIN", icon: "🛡️", commands: ["admin", "slipper", "asianparent"] },
   { title: "GAMES", icon: "🎮", commands: ["WORK IN PROGESS"] },
   { title: "FUN", icon: "🎭", commands: ["8ball", "ash", "ship"] },
   { title: "MEDIA", icon: "🎞️", commands: ["translate", "song", "anime"] },
@@ -23,6 +23,9 @@ const INFO = {
   song: ["","finds some random ahh song ur wanna search"],
   ship: ["", "I recommend shipping Haynan x Alisa 👍"],
   anime: ["", "search some random anime stuff, i recommend if you femboy"]
+  admin: ["[kick, promote, demote, lock, unlock]", "Asian tools"],
+  slipper: ["[on, off, status]", "Asian bot on/off switch"],
+  asianparent: ["[on, off, add, remove, list]", "Group language filter"],
 };
 
 function commandInfo(command) {
