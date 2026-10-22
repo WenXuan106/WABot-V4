@@ -1,3 +1,12 @@
+const DEFAULT_SWEAR_WORDS = [
+  "fuck",
+  "shit",
+  "bitch",
+  "asshole",
+  "damn",
+  "wtf",
+  "stfu",
+];
 const { getAsianParent, setAsianParent } = require('../lib/group-state');
 module.exports = {
   name: 'asianparent',
@@ -31,6 +40,16 @@ module.exports = {
     if (sub === 'list' || sub === 'status') {
       return ctx.sendText([`👪 AsianParent: ${data.enabled ? 'ON' : 'OFF'}`, `Custom words: ${data.words?.length ? data.words.join(', ') : '(none)'}`, 'Built-in filter: common profanity'].join('\n'));
     }
+    function containsSwearWord(message, words) {
+  const text = message.toLowerCase();
+
+  return words.some((word) => {
+    const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const pattern = new RegExp(`\\b${escaped}\\b`, "i");
+
+    return pattern.test(text);
+  });
+}
     return ctx.sendText(['👪 ASIANPARENT COMMANDS', '!asianparent on — turn filter on', '!asianparent off — turn filter off', '!asianparent add <word> — add a word', '!asianparent remove <word> — remove a word', '!asianparent list — show settings'].join('\n'));
   },
 };
