@@ -13,23 +13,23 @@ module.exports = {
         '🧧 *ASIAN MENU*',
         '',
         '🩴 *Slipper* — bot on/off switch',
-        '!slipper off | !slipper on | !slipper status',
+        '-slipper off | -slipper on | -slipper status',
         '',
         '👪 *AsianParent* — language filter',
-        '!asianparent on/off/list',
-        '!asianparent add <word>',
-        '!asianparent remove <word>',
+        '-asianparent on/off/list',
+        '-asianparent add <word>',
+        '-asianparent remove <word>',
         '',
         '🛠️ *Group controls*',
-        '!admin kick — reply to or mention a member',
-        '!admin promote — reply to or mention a member',
-        '!admin demote — reply to or mention a member',
-        '!admin lock | !admin unlock — restrict or reopen group chat',
+        '-admin kick — reply to or mention a member',
+        '-admin promote — reply to or mention a member',
+        '-admin demote — reply to or mention a member',
+        '-admin lock | !admin unlock — restrict or reopen group chat',
       ].join('\n'));
     }
     if (['kick', 'promote', 'demote'].includes(action)) {
       const target = ctx.getTargetUser?.();
-      if (!target) return ctx.sendText(`Usage: reply to a member or mention them with !admin ${action}`);
+      if (!target) return ctx.sendText(`Usage: reply to a member or mention them with -admin ${action}`);
       if (!status.botIsAdmin) return ctx.sendText('⛔ Make the bot a group admin first.');
       try {
         let ok = false;
