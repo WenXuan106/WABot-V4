@@ -14,4 +14,6 @@ module.exports = {
   TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN || "",
   
   TELEGRAM_OWNER_ID: process.env.TELEGRAM_OWNER_ID || "",
+
+  OWNER_NUMBER: String(process.env.OWNER_NUMBER || process.env.OWNER_WHATSAPP_NUMBER || "").replace(/\D/g, ""),
 };
