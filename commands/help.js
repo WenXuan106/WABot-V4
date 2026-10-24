@@ -5,7 +5,7 @@ const SECTIONS = [
   { title: "ADMIN", icon: "🛡️", commands: ["admin", "slipper", "asianparent"] },
   { title: "GAMES", icon: "🎮", commands: ["WORK IN PROGESS"] },
   { title: "FUN", icon: "🎭", commands: ["8ball", "ash", "ship","singlish"] },
-  { title: "MEDIA", icon: "🎞️", commands: ["translate", "song", "anime", "tts"] },
+  { title: "MEDIA", icon: "🎞️", commands: ["translate", "song", "anime", "tts", "movie"] },
   { title: "AI", icon: "🤖", commands: ["WORK IN PROGRESS"] },
   { title: "UTILITY", icon: "🌍", commands: ["desmos"] },
   { title: "OWNER", icon: "👑", commands: ["WORK IN PROGRESS"] },
@@ -27,7 +27,8 @@ const INFO = {
   slipper: ["[on, off, status]", "Asian bot on/off switch"],
   asianparent: ["[on, off, add, remove, list]", "Group language filter"],
   singlish: ["","give random sg related sh-"],
-  tts: ["<text>","turn any text into google voice"]
+  tts: ["<text>","turn any text into google voice"],
+  movie: ["<title>", "Search movies and find IMDb details"],
 };
 
 function commandInfo(command) {
