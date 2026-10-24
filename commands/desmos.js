@@ -16,25 +16,25 @@ function renderPng(svg) {
 const USAGE = [
   "📈 *Desmos graph*",
   "",
-  "Usage: !desmos <function>",
+  `Usage: ${config.PREFIX}desmos <function>`,
   "",
   "Examples:",
-  "• !desmos x^2",
-  "• !desmos y = sin(x)",
-  "• !desmos x^2; 2x+1; sqrt(x)   (separate with ; or , or new lines)",
-  "• !desmos tan(x) x:-6.28..6.28 y:-5..5   (set the window)",
-  "• !desmos x^2+y^2=25   (circles and other equations in x and y)",
-  "• !desmos a=2; b=3; y=a*sin(b*x)   (define values, then use them)",
-  "• !desmos blue x^2   (pick the colour — put it first)",
-  "• !desmos dark green   + a file   (shades: pale, light, dark, deep)",
-  "• !desmos colours   (shows every colour and shade)",
+  `• ${config.PREFIX}desmos x^2`,
+  `• ${config.PREFIX}desmos y = sin(x)`,
+  `• ${config.PREFIX}desmos x^2; 2x+1; sqrt(x)   (separate with ; or , or new lines)`,
+  `• ${config.PREFIX}desmos tan(x) x:-6.28..6.28 y:-5..5   (set the window)`,
+  `• ${config.PREFIX}desmos x^2+y^2=25   (circles and other equations in x and y)`,
+  `• ${config.PREFIX}desmos a=2; b=3; y=a*sin(b*x)   (define values, then use them)`,
+  `• ${config.PREFIX}desmos blue x^2   (pick the colour — put it first)`,
+  `• ${config.PREFIX}desmos dark green   + a file   (shades: pale, light, dark, deep)`,
+  `• ${config.PREFIX}desmos colours   (shows every colour and shade)`,
   "",
   "You can also paste lines copied from Desmos (LaTeX), like:",
   "x=733\\left\\{6\\le y\\le 8\\right\\}",
   "\\left(((1-t)^{3}\\cdot 5+3(1-t)^{2}t\\cdot 6),((1-t)^{3}\\cdot 9+t^{3}\\cdot 2)\\right)",
-  "…or reply to a message that contains them with !desmos. The picture zooms to fit.",
+  `…or reply to a message that contains them with ${config.PREFIX}desmos. The picture zooms to fit.`,
   "",
-  "Big drawings (thousands of lines) don't fit in one chat message — save them in a .txt file and send it as a document with the caption !desmos (or reply to the file with !desmos). Up to 8 MB.",
+  `Big drawings (thousands of lines) don't fit in one chat message — save them in a .txt file and send it as a document with the caption ${config.PREFIX}desmos (or reply to the file with ${config.PREFIX}desmos). Up to 8 MB.`,
   "",
   "Math: + - * / ^, brackets, pi, e, sin cos tan asin acos atan sinh cosh tanh sqrt cbrt abs ln log exp floor ceil round sign.",
 ].join("\n");
@@ -53,7 +53,7 @@ function requestText(ctx) {
 module.exports = {
   name: "desmos",
   aliases: ["graph", "plot"],
-  description: "Graph functions, lines and curves as an image, e.g. !desmos x^2; sin(x)",
+  description: `Graph functions, lines and curves as an image, e.g. ${config.PREFIX}desmos x^2; sin(x)`,
   async execute(ctx) {
     
     let fileText = null;
@@ -71,7 +71,7 @@ module.exports = {
     
     if (!fileText && /^(colou?rs?|palette)$/i.test(typedRaw)) {
       const chart = renderPng(buildColourChartSvg());
-      return ctx.sendImage(chart, "🎨 Put a colour first, e.g. !desmos dark blue  (or a code like #ff8800)");
+      return ctx.sendImage(chart, `🎨 Put a colour first, e.g. ${config.PREFIX}desmos dark blue  (or a code like #ff8800)`);
     }
 
     
@@ -88,7 +88,7 @@ module.exports = {
       request = parseGraphRequest(input);
       request.colour = colour;
     } catch (err) {
-      return ctx.sendText(`❌ ${err.message}\n\nTry: !desmos x^2`);
+      return ctx.sendText(`❌ ${err.message}\n\nTry: ${config.PREFIX}desmos x^2`);
     }
 
     try {
