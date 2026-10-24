@@ -1,3 +1,4 @@
+const config = require("../config");
 const axios = require("axios");
 
 const LANGUAGE_CODES = {
@@ -31,11 +32,11 @@ function resolveLanguageCode(name) {
 module.exports = {
   name: "translate",
   description:
-    "Translate text by language name, e.g. !translate spanish Hello there — or reply to a message with !translate <language>.",
+    `Translate text by language name, e.g. ${config.PREFIX}translate spanish Hello there — or reply to a message with ${config.PREFIX}translate <language>.`,
   async execute(ctx) {
     if (!ctx.args.length) {
       return ctx.sendText(
-        "Usage: !translate <language> <text>\nOr reply to a message with: !translate <language>\nExample: !translate Spanish Hello there"
+        `Usage: ${config.PREFIX}translate <language> <text>\nOr reply to a message with: ${config.PREFIX}translate <language>\nExample: ${config.PREFIX}translate Spanish Hello there`
       );
     }
 
@@ -49,7 +50,7 @@ module.exports = {
 
     const text = ctx.quotedText || ctx.args.slice(1).join(" ").trim();
     if (!text) {
-      return ctx.sendText("Usage: !translate <language> <text>\nOr reply to a message with: !translate <language>");
+      return ctx.sendText(`Usage: ${config.PREFIX}translate <language> <text>\nOr reply to a message with: ${config.PREFIX}translate <language>`);
     }
 
     try {
