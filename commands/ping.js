@@ -39,7 +39,7 @@ module.exports = {
       `🚀 Systems operational.`,
       divider,
       "",
-     `Use -help to see all commands.`, 
+     `Use ${config.PREFIX}help to see all commands.`, 
     ];
 
     await ctx.sendText(lines.join("\n"));
