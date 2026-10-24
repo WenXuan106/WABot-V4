@@ -1,12 +1,4 @@
-const DEFAULT_SWEAR_WORDS = [
-  "fuck",
-  "shit",
-  "bitch",
-  "asshole",
-  "damn",
-  "wtf",
-  "stfu",
-];
+const config = require("../config");
 const { getAsianParent, setAsianParent } = require('../lib/group-state');
 module.exports = {
   name: 'asianparent',
@@ -29,7 +21,7 @@ module.exports = {
     }
     if (sub === 'add' || sub === 'remove') {
       const word = ctx.args.slice(1).join(' ').trim().toLowerCase();
-      if (!word) return ctx.sendText(`Usage: !asianparent ${sub} <word>`);
+      if (!word) return ctx.sendText(`Usage: ${config.PREFIX}asianparent ${sub} <word>`);
       if (word.length > 60) return ctx.sendText('Keep the word/phrase under 60 characters.');
       data.words = Array.isArray(data.words) ? data.words : [];
       if (sub === 'add' && !data.words.includes(word)) data.words.push(word);
@@ -40,16 +32,6 @@ module.exports = {
     if (sub === 'list' || sub === 'status') {
       return ctx.sendText([`👪 AsianParent: ${data.enabled ? 'ON' : 'OFF'}`, `Custom words: ${data.words?.length ? data.words.join(', ') : '(none)'}`, 'Built-in filter: common profanity'].join('\n'));
     }
-    function containsSwearWord(message, words) {
-  const text = message.toLowerCase();
-
-  return words.some((word) => {
-    const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const pattern = new RegExp(`\\b${escaped}\\b`, "i");
-
-    return pattern.test(text);
-  });
-}
-    return ctx.sendText(['👪 ASIANPARENT COMMANDS', '!asianparent on — turn filter on', '!asianparent off — turn filter off', '!asianparent add <word> — add a word', '!asianparent remove <word> — remove a word', '!asianparent list — show settings'].join('\n'));
+    return ctx.sendText(['👪 ASIANPARENT COMMANDS', `${config.PREFIX}asianparent on — turn filter on`, `${config.PREFIX}asianparent off — turn filter off`, `${config.PREFIX}asianparent add <word> — add a word`, `${config.PREFIX}asianparent remove <word> — remove a word`, `${config.PREFIX}asianparent list — show settings`].join('\n'));
   },
 };
