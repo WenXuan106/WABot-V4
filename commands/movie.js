@@ -1,3 +1,4 @@
+const config = require("../config");
 const axios = require("axios");
 
 function formatResult(item) {
@@ -18,7 +19,7 @@ module.exports = {
     const query = ctx.args.join(" ").trim();
     if (!query) {
       return ctx.sendText(
-        "🎬 *Movie Search*\nUsage: !movie <movie title>\nExample: !movie Your Name"
+        `🎬 *Movie Search*\nUsage: ${config.PREFIX}movie <movie title>\nExample: ${config.PREFIX}movie Your Name`
       );
     }
 
