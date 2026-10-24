@@ -6,10 +6,11 @@ module.exports = {
   description: 'Switch the bot off/on for this group. Group admins or the owner only.',
   async execute(ctx) {
     if (!ctx.isGroup) return ctx.sendText('🩴 Slipper only works in group chats.');
+    const p = config.PREFIX;
     const sub = String(ctx.args[0] || 'status').toLowerCase();
     const off = isSlipperOn(ctx.chatId);
-    if (sub === 'status') return ctx.sendText(off ? '🩴 Slipper is on duty. Bot is OFF in this group. Use !slipper on to wake it up.' : '🩴 Slipper is resting. Bot is ON in this group. Use !slipper off to switch it off.');
-    if (!['on', 'off'].includes(sub)) return ctx.sendText('Usage: !slipper on | off | status');
+    if (sub === 'status') return ctx.sendText(off ? `🩴 Slipper is on duty. Bot is OFF in this group. Use ${p}slipper on to wake it up.` : `🩴 Slipper is resting. Bot is ON in this group. Use ${p}slipper off to switch it off.`);
+    if (!['on', 'off'].includes(sub)) return ctx.sendText(`Usage: ${p}slipper on | off | status`);
     if (ctx.platform === 'telegram') {
       if (!config.TELEGRAM_OWNER_ID || String(ctx.senderId) !== String(config.TELEGRAM_OWNER_ID)) return ctx.sendText('Only the configured Telegram bot owner can use Slipper. Set TELEGRAM_OWNER_ID in your environment.');
     } else {
