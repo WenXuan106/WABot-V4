@@ -1,3 +1,5 @@
+const config = require("../config");
+
 const RESPONSES = [
   "Yes, definitely.",
   "It is certain.",
@@ -13,10 +15,10 @@ const RESPONSES = [
 
 module.exports = {
   name: "8ball",
-  description: "Ask the magic 8-ball a question, e.g. !8ball will it rain today?",
+  description: `Ask the magic 8-ball a question, e.g. ${config.PREFIX}8ball will it rain today?`,
   async execute(ctx) {
     if (!ctx.args.length) {
-      return ctx.sendText("Usage: !8ball <question>");
+      return ctx.sendText(`Usage: ${config.PREFIX}8ball <question>`);
     }
     const answer = RESPONSES[Math.floor(Math.random() * RESPONSES.length)];
     await ctx.sendText(`🎱 ${answer}`);
