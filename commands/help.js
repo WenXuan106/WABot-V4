@@ -4,7 +4,7 @@ const SECTIONS = [
   { title: "GENERAL", icon: "🧭", commands: ["help", "ping", "milo", "pfp"] },
   { title: "ADMIN", icon: "🛡️", commands: ["admin", "slipper", "asianparent"] },
   { title: "GAMES", icon: "🎮", commands: ["WORK IN PROGESS"] },
-  { title: "FUN", icon: "🎭", commands: ["8ball", "ash", "ship"] },
+  { title: "FUN", icon: "🎭", commands: ["8ball", "ash", "ship","singlish"] },
   { title: "MEDIA", icon: "🎞️", commands: ["translate", "song", "anime"] },
   { title: "AI", icon: "🤖", commands: ["WORK IN PROGRESS"] },
   { title: "UTILITY", icon: "🌍", commands: ["desmos"] },
@@ -26,6 +26,7 @@ const INFO = {
   admin: ["[kick, promote, demote, lock, unlock]", "Asian tools"],
   slipper: ["[on, off, status]", "Asian bot on/off switch"],
   asianparent: ["[on, off, add, remove, list]", "Group language filter"],
+  singlish: ["","give random sg related sh-"],
 };
 
 function commandInfo(command) {
