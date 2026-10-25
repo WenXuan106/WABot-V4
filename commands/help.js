@@ -1,6 +1,7 @@
 const config = require("../config");
 
 const SECTIONS = [
+  { title: "CREDITS", icon: "🤖", commands: ["credits"] },
   { title: "GENERAL", icon: "🧭", commands: ["help", "ping", "milo", "pfp"] },
   { title: "ADMIN", icon: "🛡️", commands: ["admin", "slipper", "asianparent"] },
   { title: "GAMES", icon: "🎮", commands: ["WORK IN PROGESS"] },
@@ -29,6 +30,7 @@ const INFO = {
   singlish: ["","give random sg related sh-"],
   tts: ["<text>","turn any text into google voice"],
   movie: ["<title>", "Search movies and find IMDb details"],
+  credits: ["", "credits on what was used in the bot"
 };
 
 function commandInfo(command) {
