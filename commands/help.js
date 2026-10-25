@@ -30,7 +30,7 @@ const INFO = {
   singlish: ["","give random sg related sh-"],
   tts: ["<text>","turn any text into google voice"],
   movie: ["<title>", "Search movies and find IMDb details"],
-  credits: ["", "credits on what was used in the bot"
+  credits: ["", "credits on what was used in the bot"],
 };
 
 function commandInfo(command) {
