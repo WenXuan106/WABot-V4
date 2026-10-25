@@ -2,7 +2,7 @@ const config = require("../config");
 
 module.exports = {
   name: "credits",
-  description: "Show the people and projects behind the bot",
+  description: "credits on what was used in the bot",
   aliases: ["credit", "about"],
   async execute(ctx) {
     const prefix = String(config.PREFIX || "!");
