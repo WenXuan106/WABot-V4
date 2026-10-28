@@ -1,0 +1,90 @@
+const fs = require('fs');
+const path = require('path');
+
+const DATA_DIR = path.join(__dirname, '..', 'data');
+const DATA_FILE = path.join(DATA_DIR, 'players.json');
+
+function keyFor(id) {
+  return String(id || 'unknown').split('@')[0].split(':')[0].replace(/[^a-zA-Z0-9_-]/g, '').toLowerCase() || 'unknown';
+}
+
+function readAll() {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function writeAll(data) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  const temp = `${DATA_FILE}.tmp`;
+  fs.writeFileSync(temp, JSON.stringify(data, null, 2));
+  fs.renameSync(temp, DATA_FILE);
+}
+
+function defaultPlayer(id, name) {
+  return {
+    id: keyFor(id),
+    name: String(name || 'Player').slice(0, 40),
+    xp: 0,
+    coins: 100,
+    gamesPlayed: 0,
+    wins: 0,
+    losses: 0,
+    draws: 0,
+    streak: 0,
+    bestStreak: 0,
+    lastPlayedAt: null,
+  };
+}
+
+function getPlayer(id, name) {
+  const all = readAll();
+  const key = keyFor(id);
+  const player = { ...defaultPlayer(id, name), ...(all[key] || {}) };
+  if (name && (!player.name || player.name === 'Player')) {
+    player.name = String(name).slice(0, 40);
+  }
+  return player;
+}
+
+function savePlayer(id, name, changes = {}) {
+  const all = readAll();
+  const key = keyFor(id);
+  const player = { ...defaultPlayer(id, name), ...(all[key] || {}), ...changes, id: key };
+  if (name) player.name = String(name).slice(0, 40);
+  all[key] = player;
+  writeAll(all);
+  return player;
+}
+
+function recordGame(id, name, result, coinDelta = 0, xpDelta = 0) {
+  const player = getPlayer(id, name);
+  const isWin = result === 'win';
+  const isLoss = result === 'loss';
+  const isDraw = result === 'draw';
+  const streak = isWin ? player.streak + 1 : 0;
+  return savePlayer(id, name, {
+    gamesPlayed: player.gamesPlayed + 1,
+    wins: player.wins + (isWin ? 1 : 0),
+    losses: player.losses + (isLoss ? 1 : 0),
+    draws: player.draws + (isDraw ? 1 : 0),
+    streak,
+    bestStreak: Math.max(player.bestStreak || 0, streak),
+    coins: Math.max(0, player.coins + coinDelta),
+    xp: Math.max(0, player.xp + xpDelta),
+    lastPlayedAt: new Date().toISOString(),
+  });
+}
+
+function levelFor(xp) {
+  return Math.floor(Math.sqrt(Math.max(0, xp) / 100)) + 1;
+}
+
+function xpForNextLevel(level) {
+  return level * level * 100;
+}
+
+module.exports = { getPlayer, savePlayer, recordGame, levelFor, xpForNextLevel, keyFor };
