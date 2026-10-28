@@ -55,7 +55,7 @@ module.exports = {
         headers: {
           Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
-          model: "s2-pro",
+          model: "s2.1-pro-free",
         },
         body: JSON.stringify({
           text,
