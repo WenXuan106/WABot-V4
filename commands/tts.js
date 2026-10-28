@@ -1,10 +1,8 @@
 const { spawn } = require("child_process");
 
 const MAX_CHARS = 2000;
-const DEFAULT_LANG = "en";
 const FISH_AUDIO_VOICE_ID = "46be5023533743df8fb432d30ce0f81a";
 const FISH_AUDIO_API_URL = "https://api.fish.audio/v1/tts";
-const FISH_AUDIO_MODEL = process.env.FISH_AUDIO_MODEL || "s2.1-pro";
 
 function mp3ToOggOpus(mp3Buffer) {
   return new Promise((resolve, reject) => {
@@ -15,8 +13,8 @@ function mp3ToOggOpus(mp3Buffer) {
     const ff = spawn("ffmpeg", args);
     const chunks = [];
     const errors = [];
-    ff.stdout.on("data", (d) => chunks.push(d));
-    ff.stderr.on("data", (e) => errors.push(e));
+    ff.stdout.on("data", (data) => chunks.push(data));
+    ff.stderr.on("data", (data) => errors.push(data));
     ff.on("error", reject);
     ff.on("close", (code) => {
       if (code === 0) return resolve(Buffer.concat(chunks));
@@ -29,32 +27,25 @@ function mp3ToOggOpus(mp3Buffer) {
 
 module.exports = {
   name: "tts",
-  description: "Convert text to speech using the selected Fish Audio voice. Example: !tts hello there, or !tts ja こんにちは",
+  description: "Convert text to speech using Fish Audio. Example: !tts [excited] Hello!",
   async execute(ctx) {
     const { args } = ctx;
-    if (!args.length) {
+    const text = args.join(" ").trim();
+
+    if (!text) {
       return ctx.sendText(
-        "Usage: !tts <text>\nOptional language code: !tts ja こんにちは\nRequires FISH_AUDIO_API_KEY to be configured."
+        "Usage: !tts <text>\nExample: !tts [excited] Hello! Welcome to Fish Audio.\nRequires FISH_API_KEY to be configured."
       );
     }
 
-    let lang = DEFAULT_LANG;
-    let text = args.join(" ").trim();
-    const maybeLang = String(args[0]).toLowerCase();
-    if (/^[a-z]{2}(-[a-z]{2})?$/.test(maybeLang) && args.length > 1) {
-      lang = maybeLang;
-      text = args.slice(1).join(" ").trim();
-    }
-
-    if (!text) return ctx.sendText("Give me some text to speak, e.g. !tts hello there");
     if (text.length > MAX_CHARS) {
       return ctx.sendText(`That's too long (${text.length} characters). Keep it under ${MAX_CHARS} characters.`);
     }
 
-    const apiKey = process.env.FISH_AUDIO_API_KEY;
+    const apiKey = process.env.FISH_API_KEY;
     if (!apiKey) {
       return ctx.sendText(
-        "Fish Audio TTS needs an API key. Set FISH_AUDIO_API_KEY in your bot's environment, then restart the bot."
+        "Fish Audio TTS needs an API key. Set FISH_API_KEY in your bot's environment, then restart the bot."
       );
     }
 
@@ -64,13 +55,12 @@ module.exports = {
         headers: {
           Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
-          model: FISH_AUDIO_MODEL,
+          model: "s2-pro",
         },
         body: JSON.stringify({
           text,
           reference_id: FISH_AUDIO_VOICE_ID,
           format: "mp3",
-          normalize: true,
         }),
       });
 
@@ -79,14 +69,15 @@ module.exports = {
         throw new Error(`Fish Audio returned ${response.status}: ${detail}`);
       }
 
-      const mp3 = Buffer.from(await response.arrayBuffer());
-      if (!mp3.length) throw new Error("Fish Audio returned an empty audio file");
-      const audio = await mp3ToOggOpus(mp3);
-      await ctx.sendVoice(audio);
-    } catch (err) {
-      console.error("Fish Audio TTS command failed:", err);
+      const audioBuffer = Buffer.from(await response.arrayBuffer());
+      if (!audioBuffer.length) throw new Error("Fish Audio returned an empty audio file");
+
+      const voiceMessage = await mp3ToOggOpus(audioBuffer);
+      await ctx.sendVoice(voiceMessage);
+    } catch (error) {
+      console.error("Fish Audio TTS command failed:", error);
       await ctx.sendText(
-        "⚠️ Fish Audio TTS failed. Check that FISH_AUDIO_API_KEY is valid, the voice is accessible to your account, and ffmpeg is installed."
+        "⚠️ Fish Audio TTS failed. Check that FISH_API_KEY is valid, the voice is accessible to your account, and ffmpeg is installed."
       );
     }
   },
