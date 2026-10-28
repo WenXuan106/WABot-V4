@@ -4,7 +4,7 @@ const SECTIONS = [
   { title: "CREDITS", icon: "🤖", commands: ["credits"] },
   { title: "GENERAL", icon: "🧭", commands: ["help", "ping", "milo", "pfp","language"] },
   { title: "ADMIN", icon: "🛡️", commands: ["admin", "slipper", "asianparent"] },
-  { title: "GAMES", icon: "🎮", commands: ["games","translate"] },
+  { title: "GAMES", icon: "🎮", commands: ["games","profile"] },
   { title: "FUN", icon: "🎭", commands: ["8ball", "ash", "ship","singlish"] },
   { title: "MEDIA", icon: "🎞️", commands: ["translate", "song", "anime", "tts", "movie"] },
   { title: "AI", icon: "🤖", commands: ["WORK IN PROGRESS"] },
