@@ -1,5 +1,5 @@
 const sharp = require('sharp');
-const { getPlayer, savePlayer, levelFor, xpForNextLevel } = require('../lib/player-data');
+const { init, getPlayer, savePlayer, levelFor, xpForNextLevel } = require('../lib/player-data');
 
 function escapeXml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[ch]));
@@ -66,6 +66,7 @@ module.exports = {
   aliases: ['me', 'rank'],
   description: 'Show your original player dossier card and game stats.',
   async execute(ctx) {
+    await init();
     const targetId = String(ctx.getTargetUser() || ctx.senderId);
     const isSelf = targetId === ctx.senderId;
     const displayName = isSelf ? ctx.senderName : `Player ${String(targetId).split('@')[0].slice(-6)}`;
