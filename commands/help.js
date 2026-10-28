@@ -2,9 +2,9 @@ const config = require("../config");
 
 const SECTIONS = [
   { title: "CREDITS", icon: "🤖", commands: ["credits"] },
-  { title: "GENERAL", icon: "🧭", commands: ["help", "ping", "milo", "pfp"] },
+  { title: "GENERAL", icon: "🧭", commands: ["help", "ping", "milo", "pfp","language"] },
   { title: "ADMIN", icon: "🛡️", commands: ["admin", "slipper", "asianparent"] },
-  { title: "GAMES", icon: "🎮", commands: ["WORK IN PROGESS"] },
+  { title: "GAMES", icon: "🎮", commands: ["games","translate"] },
   { title: "FUN", icon: "🎭", commands: ["8ball", "ash", "ship","singlish"] },
   { title: "MEDIA", icon: "🎞️", commands: ["translate", "song", "anime", "tts", "movie"] },
   { title: "AI", icon: "🤖", commands: ["WORK IN PROGRESS"] },
@@ -31,6 +31,9 @@ const INFO = {
   tts: ["<text>","turn any text into google voice"],
   movie: ["<title>", "Search movies and find IMDb details"],
   credits: ["", "credits on what was used in the bot"],
+  language: ["[en/ja]", "Set your personal reply language"],
+  games: ["", "shows da gamu menu"],
+  profile: ["","shows ur profile"],
 };
 
 function commandInfo(command) {
