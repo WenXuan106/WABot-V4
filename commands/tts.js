@@ -25,6 +25,8 @@ function cleanTTSInput(text) {
     
     .replace(/\b(?:弖+|弖+)\b/gi, " ")
 
+    .replace(/\b(?:AAAAAAAAAEEEEEEOOOOOO+|AAAAAAAAAEEEEEEOOOOOO+)\b/gi, " ")
+    
     .replace(/\s+/g, " ")
     .trim();
 }
