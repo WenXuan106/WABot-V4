@@ -1,10 +1,11 @@
 const { spawn } = require("child_process");
+const ffmpegPath = require("ffmpeg-static");
 
 const MAX_CHARS = 2000;
 const FISH_AUDIO_VOICE_ID = "46be5023533743df8fb432d30ce0f81a";
 const FISH_AUDIO_API_URL = "https://api.fish.audio/v1/tts";
 
-function mp3ToOggOpus(mp3Buffer) {
+function const ff = spawn("ffmpeg", args){
   return new Promise((resolve, reject) => {
     const args = [
       "-y", "-i", "pipe:0", "-ac", "1", "-ar", "16000",
@@ -97,7 +98,7 @@ if (!text) {
   );
 }
 
-      const voiceMessage = await mp3ToOggOpus(audioBuffer);
+      const voiceMessage = await const ff = spawn("ffmpeg", args);
       await ctx.sendVoice(voiceMessage);
     } catch (error) {
       console.error("Fish Audio TTS command failed:", error);
