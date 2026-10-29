@@ -21,6 +21,10 @@ function cleanTTSInput(text) {
 
     .replace(/\b(?:ugh+|ugh+)\b/gi, " ")
     
+    .replace(/\b(?:ug+|ug+)\b/gi, " ")
+    
+    .replace(/\b(?:弖+|弖+)\b/gi, " ")
+
     .replace(/\s+/g, " ")
     .trim();
 }
