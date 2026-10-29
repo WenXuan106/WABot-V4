@@ -72,6 +72,31 @@ module.exports = {
       const audioBuffer = Buffer.from(await response.arrayBuffer());
       if (!audioBuffer.length) throw new Error("Fish Audio returned an empty audio file");
 
+      function cleanTTSInput(text) {
+  return text
+    
+    .replace(/\b(?:ah+|a{4,})\b/gi, " ")
+
+    .replace(/\bh{4,}\b/gi, " ")
+
+    .replace(/\be{4,}\b/gi, " ")
+
+    .replace(/\buh{2,}\b/gi, " ")
+
+    .replace(/\b(?:hpmh+|hmm+|hmph+)\b/gi, " ")
+
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+      text = cleanTTSInput(text);
+
+if (!text) {
+  return ctx.sendText(
+    "There is no text left to speak after removing vocalizations."
+  );
+}
+
       const voiceMessage = await mp3ToOggOpus(audioBuffer);
       await ctx.sendVoice(voiceMessage);
     } catch (error) {
