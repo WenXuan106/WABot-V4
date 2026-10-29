@@ -20,8 +20,7 @@ function cleanTTSInput(text) {
     .replace(/\b(?:hpmh+|hmph+)\b/gi, " ")
 
     .replace(/\b(?:ugh+|ugh+)\b/gi, " ")
-
-
+    
     .replace(/\s+/g, " ")
     .trim();
 }
