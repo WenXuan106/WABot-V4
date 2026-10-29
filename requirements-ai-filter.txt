@@ -1,0 +1,5 @@
+numpy>=1.26,<2.2
+scipy>=1.11
+soundfile>=0.12
+tensorflow>=2.15,<2.19
+tensorflow-hub>=0.16
