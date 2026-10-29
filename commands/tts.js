@@ -4,7 +4,7 @@ const ffmpegPath = require("ffmpeg-static");
 const MAX_CHARS = 2000;
 const FISH_AUDIO_API_URL = "https://api.fish.audio/v1/tts";
 const FISH_AUDIO_VOICE_ID = "46be5023533743df8fb432d30ce0f81a";
-const FISH_API_KEY = process.env.FISH_API_KEY || "s2.1-pro-free";
+const FISH_AUDIO_MODEL = process.env.FISH_AUDIO_MODEL || "s2.1-pro-free";
 
 function cleanTTSInput(text) {
   return text
