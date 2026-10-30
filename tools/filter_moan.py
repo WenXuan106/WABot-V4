@@ -7,8 +7,8 @@ from scipy.signal import resample_poly
 TARGET_LABELS = {
     "Wail, moan", "Groan", "Grunt", "Pant", "Sigh", "Breathing", "Wheeze", "Gasp"
 }
-THRESHOLD = float(os.environ.get("MOAN_FILTER_THRESHOLD", "0.48"))
-PAD_SECONDS = float(os.environ.get("MOAN_FILTER_PADDING", "0.12"))
+THRESHOLD = float(os.environ.get("MOAN_FILTER_THRESHOLD", "0.20"))
+PAD_SECONDS = float(os.environ.get("MOAN_FILTER_PADDING", "0.20"))
 
 
 def main():
@@ -40,9 +40,10 @@ def main():
         labels = [row[2] for row in list(csv.reader(handle))[1:]]
     target_indices = [i for i, label in enumerate(labels) if label in TARGET_LABELS]
     if not target_indices:
+        print("[moan-filter] No target labels found in YAMNet class map; leaving audio unchanged.", file=sys.stderr)
         sf.write(sys.argv[2], audio, sample_rate)
         return
-
+        
     hop = 0.48
     frame_len = 0.96
     mask = np.zeros(len(audio), dtype=bool)
@@ -54,6 +55,8 @@ def main():
             mask[start:end] = True
 
     filtered = audio.copy()
+    muted_seconds = float(np.count_nonzero(mask)) / sample_rate
+    print(f"[moan-filter] threshold={THRESHOLD:.3f}; muted={muted_seconds:.2f}s of {len(audio)/sample_rate:.2f}s", file=sys.stderr)
     if np.any(mask):
         filtered[mask] = 0.0
         edge = max(1, int(0.015 * sample_rate))
